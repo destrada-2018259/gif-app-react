@@ -9,7 +9,13 @@ export const AddCategory = ({ newCategory}) => {
     const onSubmitCategory = (event) => {
         event.preventDefault();
        //console.log('hola desde el evento on submit category' + event) 
+
+       //Verificar que no se envien espacios en blanco
+
+       if(inputValue.trim().length <= 1) return; 
        newCategory(inputValue);
+
+       setInputValue("");
     }
     return (
     <>

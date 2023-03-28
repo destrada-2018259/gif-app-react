@@ -1,11 +1,16 @@
 
 import { useState } from 'react';
 import { AddCategory } from './components/AddCategory';
-
+import { GifGrid } from './components/GifGrid';
 export const GifApp = () => {
-  const [categorias, setCategorias] = useState(['Pokemon', 'Spy x Family', 'Gotoubun no Hanayome', 'Bocchi the rock']);
+  const [categorias, setCategorias] = useState(['Bocchi the rock']);
   
   const onAddCategory = ( newCategoryAdded) =>{
+
+    //Analizar si la categoría insertada ya existe en el array 
+    if (categorias.includes(newCategoryAdded)) return;
+    
+
     setCategorias([ newCategoryAdded, ...categorias])
   }
   return (
@@ -14,12 +19,14 @@ export const GifApp = () => {
       <h1>GifApp</h1>
 
       <AddCategory  newCategory = {(value) => onAddCategory(value)} />
-
-      <ol>
-        {categorias.map(categoria =>{
-          return <li key={categoria}> {categoria} </li>
-        } )} 
-      </ol>
+        {
+          categorias.map(categoria =>
+            (
+              <GifGrid key={categoria} category = {categoria}></GifGrid>
+            )
+          )
+        } 
+      
     {/* Input */}
 
     {/* Listado de Gifs */}
